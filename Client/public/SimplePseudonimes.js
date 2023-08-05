@@ -790,7 +790,23 @@ function GetNameFromSeed(seed) {
 	return result.join(' ');
 }
 
+function GetNameFromIndexes(one, two, three) {
+	return `${name_data[0][one % 255]} ${name_data[1][two % 255]} ${name_data[2][three % 255]}`;
+}
 
-for (let i = 0; i < (256); ++i){
-	console.log(GetNameFromSeed(Math.floor(Math.random() * NAME_NUMBER)));
-} 
+function GetSeedFromIndexes(one, two, three) {
+	return (three&255) << 16 | (255 & two) << 8 | (255&one);
+}
+
+function test_pseudonymes(){
+	for (let i = 0; i < (256); ++i){
+		const one =  Math.floor(Math.random() * 255);
+		const two =  Math.floor(Math.random() * 255);
+		const three =  Math.floor(Math.random() * 255);
+		let seed = GetSeedFromIndexes(one, two, three);
+		console.log(`${one.toString(16)} - ${two.toString(16)} - ${three.toString(16)}`);
+		console.log(`${seed.toString(16)}`);
+		console.log(GetNameFromSeed(seed));
+		console.log(GetNameFromIndexes(one, two, three));
+	} 
+}

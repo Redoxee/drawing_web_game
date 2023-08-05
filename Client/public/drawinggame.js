@@ -22,10 +22,14 @@ function hexToRgb(hex) {
     return r + "," + g + "," + b;
 }
 
-const mc1 = 155;
-const mc2 = 133;
-const d = [mc1, mc1,mc2,mc1,mc2,mc1,mc2,mc1,mc1, mc1,mc2,mc1];
-const mockData = new Uint8ClampedArray(d);
-const imageData = new ImageData(mockData, 3);
-const ctx = canvas.getContext('2d');
-ctx.putImageData(imageData, 0, 0);
+
+function test_drawing() {
+	const mc1 = 155;
+	const mc2 = 133;
+	const d = [mc1, mc1,mc2,mc1,mc2,mc1,mc2,mc1,mc1, mc1,mc2,mc1];
+	const mockData = new Uint8ClampedArray(d);
+	const imageData = new ImageData(mockData, 3);
+	const ctx = canvas.getContext('2d');
+	ctx.putImageData(imageData, 0, 0);
+}
+	
