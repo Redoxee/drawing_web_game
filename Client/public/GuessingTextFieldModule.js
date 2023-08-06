@@ -1,12 +1,14 @@
+"use strict";
 function create_guessing_field_element() {
-    var guessingField = document.createElement("div");
+    const guessingField = document.createElement("div");
     guessingField.className = "guessing-field";
     guessingField.letterPool = [];
     guessingField.cursor = 0;
     guessingField.value = "";
     guessingField.length = 0;
-    for (var index = 0; index < 200; ++index) {
-        var letter = document.createElement("div");
+    var allowedChars = /[a-z]|[éè]/gi;
+    for (let index = 0; index < 200; ++index) {
+        const letter = document.createElement("div");
         letter.className = "guessing-letter";
         guessingField.letterPool.push(letter);
     }
@@ -19,10 +21,10 @@ function create_guessing_field_element() {
             console.log("pattern is too long");
             return;
         }
-        for (var index = 0; index < this.length; ++index) {
-            var char = pattern[index];
-            var found = char.match(/[a-z]/gi);
-            var letter = this.letterPool[index];
+        for (let index = 0; index < this.length; ++index) {
+            const char = pattern[index];
+            let found = char.match(allowedChars);
+            const letter = this.letterPool[index];
             if (found) {
                 letter.id = "letter";
             }
@@ -52,15 +54,15 @@ function create_guessing_field_element() {
             return;
         }
         else if ((input === null || input === void 0 ? void 0 : input.length) !== 1) {
-            console.log("wrong input \"".concat(input, "\""));
+            console.log(`wrong input "${input}"`);
             return;
         }
         if (this.cursor >= this.length) {
             return;
         }
-        var found = input.match(/[a-z]/gi);
+        let found = input.match(allowedChars);
         if (!found) {
-            console.log("wrong input \"".concat(input, "\""));
+            console.log(`wrong input "${input}"`);
             return;
         }
         this.value += input;

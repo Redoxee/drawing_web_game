@@ -15,6 +15,8 @@ function create_guessing_field_element() : GuessingField {
 	guessingField.value = "";
 	guessingField.length = 0; 
 
+	var allowedChars = /[a-z]|[éè]/gi;
+
 	for (let index = 0; index < 200; ++index) {
 		const letter = document.createElement("div");
 		letter.className = "guessing-letter";
@@ -36,7 +38,7 @@ function create_guessing_field_element() : GuessingField {
 
 		for (let index = 0; index < this.length; ++index) {
 			const char = pattern[index];
-			let found = char.match(/[a-z]/gi);
+			let found = char.match(allowedChars);
 			const letter = this.letterPool[index];
 			if (found) {
 				letter.id = "letter";
@@ -79,7 +81,7 @@ function create_guessing_field_element() : GuessingField {
 			return;
 		}
 
-		let found = input.match(/[a-z]/gi);
+		let found = input.match(allowedChars);
 		if (!found) {
 			console.log(`wrong input "${input}"`);
 			return;
