@@ -12,7 +12,7 @@ const layouts = {
 	]
 }
 
-function get_keyboard(layout_name) {
+function create_keyboard_element(layout_name) {
 	const layout = layouts[layout_name] || layouts.qwerty;
 
 	const input_event_name = "OnCustomKeyBoardInput";

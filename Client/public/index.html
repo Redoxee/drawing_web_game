@@ -1,20 +1,28 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="KeyboardModule.css">
+		<link rel="stylesheet" type="text/css" href="GuessingTextFieldModule.css">
 	</head>
 	<body>
-		<div class="kbHolder"></div>
+		<div id="guessHolder"></div>
+		<div id="kbHolder"></div>
 		<canvas id="drawingArea"></canvas>
 	</body>
 	<script src="SimplePseudonimes.js"></script>
 	<script src="drawinggame.js"></script>
 	<script src="KeyboardModule.js"></script>
+	<script src="GuessingTextFieldModule.js"></script>
 	<script>
-		const holder = document.getElementsByClassName("kbHolder")[0];
-		const kb = get_keyboard("azerty");
+		const holder = document.getElementById("kbHolder");
+		const kb = create_keyboard_element("azerty");
 		holder.appendChild(kb);
 		kb.addEventListener("OnCustomKeyBoardInput", e=>{
 			console.log(e.detail);
 		});
+
+		const guessHolder = document.getElementById("guessHolder");
+		const guessField = create_guessing_field_element();
+		guessHolder.appendChild(guessField);
+		guessField.configure("petter plus haut que son cul");
 	</script>
 </html>
