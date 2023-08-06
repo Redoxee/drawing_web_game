@@ -15,14 +15,19 @@
 	<script>
 		const holder = document.getElementById("kbHolder");
 		const kb = create_keyboard_element("azerty");
-		holder.appendChild(kb);
-		kb.addEventListener("OnCustomKeyBoardInput", e=>{
-			console.log(e.detail);
-		});
-
+		
 		const guessHolder = document.getElementById("guessHolder");
 		const guessField = create_guessing_field_element();
 		guessHolder.appendChild(guessField);
 		guessField.configure("petter plus haut que son cul");
+		holder.appendChild(kb);
+
+		kb.addEventListener("OnCustomKeyBoardInput", e => {
+			guessField.input(e.detail);
+		});
+
+		guessField.addEventListener("submit", _=>{
+			console.log(guessField.value);
+		});
 	</script>
 </html>

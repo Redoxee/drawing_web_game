@@ -1,13 +1,13 @@
 const layouts = {
 	azerty : [
 		["a","z","e","r","t","y","u","i","o","p","⌫"],
-		["q","s","d","f","g","h","j","k","l","m","⏎"],
+		["q","s","d","f","g","h","j","k","l","m","↵"],
 		["w","x","c","v","b","n"]
 	],
 
 	qwerty : [
 		["q","w","e","r","t","y","u","i","o","p","⌫"],
-		["a","s","d","f","g","h","j","k","l","⏎"],
+		["a","s","d","f","g","h","j","k","l","↵"],
 		["z","x","c","v","b","n","m"]
 	]
 }
@@ -29,11 +29,11 @@ function create_keyboard_element(layout_name) {
 			rowElement.appendChild(btn);
 
 			btn.onclick=_=>{
-				const value = key;
+				let value = key;
 				if (key === "⌫") {
-					value = "Backspace";
-				} else if (key === "⏎") {
-					value = "Enter";
+					value = "backspace";
+				} else if (key === "↵") {
+					value = "enter";
 				}
 
 				kb.dispatchEvent(new CustomEvent(input_event_name,{detail:value}));
