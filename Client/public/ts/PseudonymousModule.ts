@@ -1,4 +1,4 @@
-const name_data = [
+const name_data : string[][]= [
 	[
 		"Abundant",
 		"Accurate",
@@ -777,7 +777,7 @@ const name_data = [
 
 const NAME_NUMBER = (256 * 256 * 256);
 
-function GetNameFromSeed(seed) {
+function GetNameFromSeed(seed : number) {
 	seed = seed % NAME_NUMBER;
 	let numberResult = [];
 	let result = [];
@@ -790,15 +790,15 @@ function GetNameFromSeed(seed) {
 	return result.join(' ');
 }
 
-function GetNameFromIndexes(one, two, three) {
+function GetNameFromIndexes(one: number, two : number, three : number) : string {
 	return `${name_data[0][one % 255]} ${name_data[1][two % 255]} ${name_data[2][three % 255]}`;
 }
 
-function GetSeedFromIndexes(one, two, three) {
+function GetSeedFromIndexes(one : number, two : number, three : number) : number {
 	return (three&255) << 16 | (255 & two) << 8 | (255&one);
 }
 
-function test_pseudonymes(){
+function test_pseudonymes() : void{
 	for (let i = 0; i < (256); ++i){
 		const one =  Math.floor(Math.random() * 255);
 		const two =  Math.floor(Math.random() * 255);
